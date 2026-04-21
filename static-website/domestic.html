@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domestic Tours - TravelEase</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-plane"></i>
+                <span>TravelEase</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="domestic.html" class="active">Domestic Tours</a></li>
+                <li><a href="international.html">International Tours</a></li>
+                <li><a href="visa.html">Visa Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="contact.html" class="nav-cta">Get Quote</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>Domestic Tour Packages</h1>
+        <p>Discover the incredible beauty of India</p>
+    </section>
+
+    <!-- Destinations Grid -->
+    <section class="destinations">
+        <div class="container">
+            <div class="section-header">
+                <h2>Explore India</h2>
+                <p>Handpicked destinations with customized itineraries for an unforgettable experience</p>
+            </div>
+            
+            <div class="destinations-grid" id="domesticGrid">
+                <!-- Kashmir -->
+                <div class="destination-card" onclick="window.location.href='destination.html?id=kashmir'">
+                    <div class="destination-image">
+                        <img src="https://images.unsplash.com/photo-1597074866923-dc0589150358?w=600" alt="Kashmir">
+                        <span class="destination-badge">Domestic</span>
+                    </div>
+                    <div class="destination-content">
+                        <h3>Kashmir Paradise</h3>
+                        <p class="destination-location"><i class="fas fa-map-marker-alt"></i> Srinagar, Jammu & Kashmir</p>
+                        <p class="destination-duration"><i class="fas fa-clock"></i> 6 Days / 5 Nights</p>
+                        <p class="destination-duration"><i class="fas fa-calendar-alt"></i> Best Time: March - October</p>
+                        <ul class="destination-highlights">
+                            <li>Dal Lake Shikara Ride</li>
+                            <li>Gulmarg Gondola</li>
+                            <li>Pahalgam Valley</li>
+                            <li>Mughal Gardens</li>
+                        </ul>
+                        <div style="display: flex; gap: 10px; margin-top: 15px;">
+                            <a href="destination.html?id=kashmir" class="btn btn-outline">View Itinerary</a>
+                            <button onclick="event.stopPropagation(); openModal('Kashmir Paradise')" class="btn btn-primary">Enquire Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kerala -->
+                <div class="destination-card" onclick="window.location.href='destination.html?id=kerala'">
+                    <div class="destination-image">
+                        <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=600" alt="Kerala">
+                        <span class="destination-badge">Domestic</span>
+                    </div>
+                    <div class="destination-content">
+                        <h3>Kerala Backwaters</h3>
+                        <p class="destination-location"><i class="fas fa-map-marker-alt"></i> Kerala, India</p>
+                        <p class="destination-duration"><i class="fas fa-clock"></i> 5 Days / 4 Nights</p>
+                        <p class="destination-duration"><i class="fas fa-calendar-alt"></i> Best Time: September - March</p>
+                        <ul class="destination-highlights">
+                            <li>Houseboat Stay in Alleppey</li>
+                            <li>Munnar Tea Gardens</li>
+                            <li>Kathakali Dance Show</li>
+                            <li>Ayurvedic Spa Experience</li>
+                        </ul>
+                        <div style="display: flex; gap: 10px; margin-top: 15px;">
+                            <a href="destination.html?id=kerala" class="btn btn-outline">View Itinerary</a>
+                            <button onclick="event.stopPropagation(); openModal('Kerala Backwaters')" class="btn btn-primary">Enquire Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rajasthan -->
+                <div class="destination-card" onclick="window.location.href='destination.html?id=rajasthan'">
+                    <div class="destination-image">
+                        <img src="https://images.unsplash.com/photo-1599661046289-e31897846e41?w=600" alt="Rajasthan">
+                        <span class="destination-badge">Domestic</span>
+                    </div>
+                    <div class="destination-content">
+                        <h3>Royal Rajasthan</h3>
+                        <p class="destination-location"><i class="fas fa-map-marker-alt"></i> Rajasthan, India</p>
+                        <p class="destination-duration"><i class="fas fa-clock"></i> 7 Days / 6 Nights</p>
+                        <p class="destination-duration"><i class="fas fa-calendar-alt"></i> Best Time: October - March</p>
+                        <ul class="destination-highlights">
+                            <li>Jaipur - Pink City Palaces</li>
+                            <li>Udaipur - City of Lakes</li>
+                            <li>Jodhpur - Blue City</li>
+                            <li>Desert Safari in Jaisalmer</li>
+                        </ul>
+                        <div style="display: flex; gap: 10px; margin-top: 15px;">
+                            <a href="destination.html?id=rajasthan" class="btn btn-outline">View Itinerary</a>
+                            <button onclick="event.stopPropagation(); openModal('Royal Rajasthan')" class="btn btn-primary">Enquire Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Goa -->
+                <div class="destination-card" onclick="window.location.href='destination.html?id=goa'">
+                    <div class="destination-image">
+                        <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=600" alt="Goa">
+                        <span class="destination-badge">Domestic</span>
+                    </div>
+                    <div class="destination-content">
+                        <h3>Goa Beach Escape</h3>
+                        <p class="destination-location"><i class="fas fa-map-marker-alt"></i> Goa, India</p>
+                        <p class="destination-duration"><i class="fas fa-clock"></i> 4 Days / 3 Nights</p>
+                        <p class="destination-duration"><i class="fas fa-calendar-alt"></i> Best Time: October - March</p>
+                        <ul class="destination-highlights">
+                            <li>Beach Hopping</li>
+                            <li>Water Sports</li>
+                            <li>Portuguese Heritage</li>
+                            <li>Nightlife & Cuisine</li>
+                        </ul>
+                        <div style="display: flex; gap: 10px; margin-top: 15px;">
+                            <a href="destination.html?id=goa" class="btn btn-outline">View Itinerary</a>
+                            <button onclick="event.stopPropagation(); openModal('Goa Beach Escape')" class="btn btn-primary">Enquire Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ladakh -->
+                <div class="destination-card" onclick="window.location.href='destination.html?id=ladakh'">
+                    <div class="destination-image">
+                        <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=600" alt="Ladakh">
+                        <span class="destination-badge">Domestic</span>
+                    </div>
+                    <div class="destination-content">
+                        <h3>Ladakh Adventure</h3>
+                        <p class="destination-location"><i class="fas fa-map-marker-alt"></i> Leh-Ladakh, India</p>
+                        <p class="destination-duration"><i class="fas fa-clock"></i> 7 Days / 6 Nights</p>
+                        <p class="destination-duration"><i class="fas fa-calendar-alt"></i> Best Time: May - September</p>
+                        <ul class="destination-highlights">
+                            <li>Pangong Lake</li>
+                            <li>Nubra Valley</li>
+                            <li>Khardung La Pass</li>
+                            <li>Buddhist Monasteries</li>
+                        </ul>
+                        <div style="display: flex; gap: 10px; margin-top: 15px;">
+                            <a href="destination.html?id=ladakh" class="btn btn-outline">View Itinerary</a>
+                            <button onclick="event.stopPropagation(); openModal('Ladakh Adventure')" class="btn btn-primary">Enquire Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Andaman -->
+                <div class="destination-card" onclick="window.location.href='destination.html?id=andaman'">
+                    <div class="destination-image">
+                        <img src="https://images.unsplash.com/photo-1589171874234-87898c4d2e26?w=600" alt="Andaman">
+                        <span class="destination-badge">Domestic</span>
+                    </div>
+                    <div class="destination-content">
+                        <h3>Andaman Islands</h3>
+                        <p class="destination-location"><i class="fas fa-map-marker-alt"></i> Andaman & Nicobar</p>
+                        <p class="destination-duration"><i class="fas fa-clock"></i> 5 Days / 4 Nights</p>
+                        <p class="destination-duration"><i class="fas fa-calendar-alt"></i> Best Time: October - May</p>
+                        <ul class="destination-highlights">
+                            <li>Radhanagar Beach</li>
+                            <li>Cellular Jail</li>
+                            <li>Scuba Diving</li>
+                            <li>Havelock Island</li>
+                        </ul>
+                        <div style="display: flex; gap: 10px; margin-top: 15px;">
+                            <a href="destination.html?id=andaman" class="btn btn-outline">View Itinerary</a>
+                            <button onclick="event.stopPropagation(); openModal('Andaman Islands')" class="btn btn-primary">Enquire Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Can't Find What You're Looking For?</h2>
+            <p>We create customized tour packages based on your preferences</p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="btn btn-primary">Request Custom Package</a>
+                <a href="https://wa.me/919876543210?text=Hi! I need a customized domestic tour package." target="_blank" class="btn btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> WhatsApp Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-plane"></i>
+                        <span>TravelEase</span>
+                    </div>
+                    <p>Your trusted travel partner for domestic and international tours. Creating memorable journeys since 2010.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="domestic.html">Domestic Tours</a></li>
+                        <li><a href="international.html">International Tours</a></li>
+                        <li><a href="visa.html">Visa Services</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Popular Destinations</h4>
+                    <ul>
+                        <li><a href="destination.html?id=kashmir">Kashmir</a></li>
+                        <li><a href="destination.html?id=kerala">Kerala</a></li>
+                        <li><a href="destination.html?id=dubai">Dubai</a></li>
+                        <li><a href="destination.html?id=thailand">Thailand</a></li>
+                        <li><a href="destination.html?id=bali">Bali</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Travel Street, New Delhi, India</li>
+                        <li><i class="fas fa-phone"></i> +91 98765 43210</li>
+                        <li><i class="fas fa-envelope"></i> info@travelease.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Sat: 9AM - 7PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 TravelEase. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/919876543210?text=Hi! I'm interested in domestic tour packages" target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Inquiry Modal -->
+    <div class="modal" id="inquiryModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <h2>Send Inquiry</h2>
+            <form id="inquiryForm" onsubmit="submitInquiry(event)">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone *</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="destination">Destination *</label>
+                    <input type="text" id="destination" name="destination" required>
+                </div>
+                <div class="form-group">
+                    <label for="travelDate">Travel Date</label>
+                    <input type="date" id="travelDate" name="travelDate">
+                </div>
+                <div class="form-group">
+                    <label for="travelers">Number of Travelers</label>
+                    <input type="number" id="travelers" name="travelers" min="1" value="2">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Submit Inquiry</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

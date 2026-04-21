@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { visaServices } from '../data/visaServices';
 import InquiryModal from '../components/InquiryModal';
-import { heroImages } from '../config/company';
 import { getWhatsAppLink } from '../config/company';
 
 export default function VisaServicesPage() {

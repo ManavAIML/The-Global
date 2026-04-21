@@ -13,6 +13,19 @@ export interface DayItinerary {
   accommodation: string;
 }
 
+export interface HotelStay {
+  destination: string;
+  nights: string;
+  hotelName: string;
+}
+
+export interface Pricing {
+  twinSharing: string;
+  extraPerson: string;
+  childWithoutMattress: string;
+  validity?: string[];
+}
+
 export interface Destination {
   id: string;
   name: string;
@@ -27,6 +40,9 @@ export interface Destination {
   inclusions: string[];
   exclusions: string[];
   itinerary: DayItinerary[];
+  hotels?: HotelStay[];
+  pricing?: Pricing;
+  mapUrl?: string;
   type: 'domestic' | 'international';
 }
 
@@ -161,6 +177,23 @@ export const domesticDestinations: Destination[] = [
         accommodation: "N/A"
       }
     ],
+    hotels: [
+      { destination: "Srinagar (Houseboat)", nights: "1 Nt", hotelName: "Premium Dal Lake Houseboat or Similar" },
+      { destination: "Srinagar", nights: "1 Nt", hotelName: "Hotel Four Points by Sheraton or Similar" },
+      { destination: "Gulmarg", nights: "1 Nt", hotelName: "The Khyber Himalayan Resort or Similar" },
+      { destination: "Pahalgam", nights: "2 Nts", hotelName: "Pahalgam Hotel or Similar" }
+    ],
+    pricing: {
+      twinSharing: "38,499/-",
+      extraPerson: "32,499/-",
+      childWithoutMattress: "22,499/-",
+      validity: [
+        "20. April. 2026 TO 30. April. 2026",
+        "04. May. 2026 TO 14. May. 2026",
+        "18. May. 2026 TO 28. May. 2026"
+      ]
+    },
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1667083.5601977755!2d73.84433158098317!3d34.1257404419958!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38e1092499ffa89d%3A0x6567a6d4697e7f1!2sJammu%20and%20Kashmir!5e0!3m2!1sen!2sin!4v1713437148564!5m2!1sen!2sin",
     type: "domestic"
   },
   {

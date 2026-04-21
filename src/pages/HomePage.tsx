@@ -4,8 +4,7 @@ import { domesticDestinations } from '../data/domesticDestinations';
 import { internationalDestinations } from '../data/internationalDestinations';
 import DestinationCard from '../components/DestinationCard';
 import InquiryModal from '../components/InquiryModal';
-import TestimonialCard from '../components/TestimonialCard';
-import { heroImages } from '../config/company';
+import TestimonialSlider from '../components/TestimonialSlider';
 import { getWhatsAppLink } from '../config/company';
 
 export default function HomePage() {
@@ -239,6 +238,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Customer Reviews Slider */}
+      <TestimonialSlider />
 
       {/* CTA Section */}
       <section className="py-20 bg-gray-50">

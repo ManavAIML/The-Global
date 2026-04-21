@@ -10,7 +10,7 @@ const allDestinations: Destination[] = [...domesticDestinations, ...internationa
 export default function DestinationDetailPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState<'overview' | 'itinerary' | 'inclusions'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'itinerary' | 'inclusions' | 'hotels' | 'pricing' | 'map'>('overview');
   const [expandedDay, setExpandedDay] = useState<number | null>(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -167,16 +167,19 @@ export default function DestinationDetailPage() {
             <div className="lg:col-span-2">
               {/* Tabs */}
               <div className="bg-white rounded-xl shadow-lg overflow-hidden mb-8">
-                <div className="flex border-b">
+                <div className="flex border-b overflow-x-auto whitespace-nowrap" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                   {[
                     { id: 'overview', label: 'Overview' },
                     { id: 'itinerary', label: 'Day-wise Itinerary' },
                     { id: 'inclusions', label: 'Inclusions & Exclusions' },
+                    ...(destination.hotels ? [{ id: 'hotels', label: 'Hotels' }] : []),
+                    ...(destination.pricing ? [{ id: 'pricing', label: 'Pricing' }] : []),
+                    ...(destination.mapUrl ? [{ id: 'map', label: 'Map' }] : []),
                   ].map((tab) => (
                     <button
                       key={tab.id}
-                      onClick={() => setActiveTab(tab.id as 'overview' | 'itinerary' | 'inclusions')}
-                      className={`flex-1 px-6 py-4 text-center font-medium transition-colors ${
+                      onClick={() => setActiveTab(tab.id as 'overview' | 'itinerary' | 'inclusions' | 'hotels' | 'pricing' | 'map')}
+                      className={`flex-shrink-0 px-6 py-4 text-center font-medium transition-colors ${
                         activeTab === tab.id
                           ? 'bg-teal-50 text-teal-600 border-b-2 border-teal-500'
                           : 'text-gray-600 hover:bg-gray-50'
@@ -335,6 +338,104 @@ export default function DestinationDetailPage() {
                             </li>
                           ))}
                         </ul>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Hotels Tab */}
+                  {activeTab === 'hotels' && destination.hotels && (
+                    <div className="animate-fade-in">
+                      <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                        <svg className="w-6 h-6 text-teal-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+                        Hotels
+                      </h2>
+                      <div className="overflow-x-auto rounded-xl border border-gray-100 shadow-sm">
+                        <table className="w-full text-left border-collapse">
+                          <thead>
+                            <tr className="bg-gray-50 border-b border-gray-200">
+                              <th className="py-4 px-6 font-bold text-gray-700 whitespace-nowrap">Destination</th>
+                              <th className="py-4 px-6 font-bold text-gray-700 whitespace-nowrap">Nights</th>
+                              <th className="py-4 px-6 font-bold text-gray-700 min-w-[200px]">Hotel</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {destination.hotels.map((hotel, index) => (
+                              <tr key={index} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
+                                <td className="py-4 px-6 text-gray-600">{hotel.destination}</td>
+                                <td className="py-4 px-6 text-gray-600">{hotel.nights}</td>
+                                <td className="py-4 px-6 text-gray-600 font-medium">{hotel.hotelName}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Pricing Tab */}
+                  {activeTab === 'pricing' && destination.pricing && (
+                    <div className="animate-fade-in">
+                      <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                        <svg className="w-6 h-6 text-teal-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        Pricing Details
+                      </h2>
+                      
+                      {destination.pricing.validity && (
+                        <div className="bg-gray-50 p-6 rounded-xl mb-8 border border-gray-100">
+                          <h3 className="font-semibold text-gray-800 mb-3 text-lg flex items-center">
+                            <svg className="w-5 h-5 text-gray-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                            Valid Departure Dates
+                          </h3>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                            {destination.pricing.validity.map((date, idx) => (
+                              <div key={idx} className="flex items-center text-gray-700 bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-100">
+                                <span className="w-2 h-2 bg-teal-500 rounded-full mr-3 flex-shrink-0"></span>
+                                <span className="text-sm font-medium">{date}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      <div className="overflow-x-auto rounded-xl border border-gray-100 shadow-sm">
+                        <table className="w-full text-left border-collapse">
+                          <tbody>
+                            <tr className="border-b border-gray-100 hover:bg-gray-50">
+                              <td className="py-5 px-6 font-bold text-gray-700 w-1/2 md:w-2/3 uppercase text-xs tracking-wider">Per Person (Twin Sharing)</td>
+                              <td className="py-5 px-6 text-gray-800 font-bold text-lg">{destination.pricing.twinSharing}</td>
+                            </tr>
+                            <tr className="border-b border-gray-100 hover:bg-gray-50">
+                              <td className="py-5 px-6 font-bold text-gray-700 uppercase text-xs tracking-wider">Extra Person <br/><span className="font-normal text-gray-500 capitalize tracking-normal">(In Same Room with Mattress)</span></td>
+                              <td className="py-5 px-6 text-gray-800 font-bold text-lg">{destination.pricing.extraPerson}</td>
+                            </tr>
+                            <tr className="border-b border-gray-100 hover:bg-gray-50">
+                              <td className="py-5 px-6 font-bold text-gray-700 uppercase text-xs tracking-wider">Per Child (6-10 Years) <br/><span className="font-normal text-gray-500 capitalize tracking-normal">(In Same Room Without Mattress)</span></td>
+                              <td className="py-5 px-6 text-gray-800 font-bold text-lg">{destination.pricing.childWithoutMattress}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Map Tab */}
+                  {activeTab === 'map' && destination.mapUrl && (
+                    <div className="animate-fade-in">
+                      <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                        <svg className="w-6 h-6 text-teal-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" /></svg>
+                        Route Map
+                      </h2>
+                      <div className="w-full h-[500px] rounded-xl overflow-hidden shadow-lg border border-gray-200">
+                        <iframe 
+                          src={destination.mapUrl} 
+                          width="100%" 
+                          height="100%" 
+                          style={{ border: 0 }} 
+                          allowFullScreen 
+                          loading="lazy" 
+                          referrerPolicy="no-referrer-when-downgrade"
+                          title="Itinerary Route Map"
+                        ></iframe>
                       </div>
                     </div>
                   )}

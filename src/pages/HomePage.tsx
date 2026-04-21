@@ -4,6 +4,9 @@ import { domesticDestinations } from '../data/domesticDestinations';
 import { internationalDestinations } from '../data/internationalDestinations';
 import DestinationCard from '../components/DestinationCard';
 import InquiryModal from '../components/InquiryModal';
+import TestimonialCard from '../components/TestimonialCard';
+import { heroImages } from '../config/company';
+import { getWhatsAppLink } from '../config/company';
 
 export default function HomePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -254,7 +257,7 @@ export default function HomePage() {
               Get Free Quote
             </button>
             <a
-              href="https://wa.me/919876543210"
+              href={getWhatsAppLink()}
               target="_blank"
               rel="noopener noreferrer"
               className="bg-green-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-green-600 transition-all flex items-center"

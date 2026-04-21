@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { visaServices } from '../data/visaServices';
 import InquiryModal from '../components/InquiryModal';
+import { heroImages } from '../config/company';
+import { getWhatsAppLink } from '../config/company';
 
 export default function VisaServicesPage() {
   const [selectedVisa, setSelectedVisa] = useState<string | null>(null);
@@ -230,7 +232,7 @@ export default function VisaServicesPage() {
               Submit Visa Inquiry
             </button>
             <a
-              href="https://wa.me/919876543210?text=Hi, I need visa assistance"
+              href={getWhatsAppLink('Hi, I need visa assistance')}
               target="_blank"
               rel="noopener noreferrer"
               className="bg-green-500 text-white px-8 py-4 rounded-full font-semibold hover:bg-green-600 transition-all flex items-center"

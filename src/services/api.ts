@@ -14,7 +14,7 @@ export interface InquiryData {
   email: string;
   phone: string;
   destination: string;
-  inquiry_type: 'tour' | 'visa' | 'general';
+  inquiry_type: 'tour' | 'visa' | 'other';
   travel_date?: string;
   travelers?: string;
   message?: string;

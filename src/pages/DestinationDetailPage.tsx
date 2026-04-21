@@ -1,13 +1,15 @@
 import { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { domesticDestinations, Destination } from '../data/domesticDestinations';
 import { internationalDestinations } from '../data/internationalDestinations';
+import InquiryModal from '../components/InquiryModal';
+import { companyConfig, getWhatsAppLink, getCallLink } from '../config/company';
 
 const allDestinations: Destination[] = [...domesticDestinations, ...internationalDestinations];
-import InquiryModal from '../components/InquiryModal';
 
 export default function DestinationDetailPage() {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<'overview' | 'itinerary' | 'inclusions'>('overview');
   const [expandedDay, setExpandedDay] = useState<number | null>(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,7 +21,18 @@ export default function DestinationDetailPage() {
       <div className="pt-20 min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-gray-800 mb-4">Destination Not Found</h1>
-          <Link to="/" className="text-teal-600 hover:underline">Go back to Home</Link>
+          <p className="text-gray-500 mb-6">The destination you're looking for doesn't exist.</p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <button
+              onClick={() => navigate(-1)}
+              className="bg-gray-100 text-gray-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition-colors"
+            >
+              ← Go Back
+            </button>
+            <Link to="/" className="bg-gradient-to-r from-teal-500 to-cyan-500 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transition-all">
+              Go to Home
+            </Link>
+          </div>
         </div>
       </div>
     );
@@ -41,6 +54,16 @@ export default function DestinationDetailPage() {
           <div className="max-w-7xl mx-auto">
             {/* Breadcrumb */}
             <div className="flex items-center text-white/80 text-sm mb-4">
+              <button
+                onClick={() => navigate(-1)}
+                className="flex items-center text-white/80 hover:text-white mr-3 transition-colors"
+              >
+                <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+                Back
+              </button>
+              <span className="text-white/50 mr-3">|</span>
               <Link to="/" className="hover:text-white">Home</Link>
               <span className="mx-2">/</span>
               <Link 
@@ -112,7 +135,7 @@ export default function DestinationDetailPage() {
             </div>
             <div className="flex gap-3">
               <a
-                href={`https://wa.me/919876543210?text=Hi, I'm interested in ${destination.name} tour package`}
+                href={getWhatsAppLink(`Hi, I'm interested in ${destination.name} tour package`)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center bg-green-500 text-white px-4 py-2 rounded-full font-medium hover:bg-green-600 transition-colors"
@@ -123,7 +146,7 @@ export default function DestinationDetailPage() {
                 WhatsApp
               </a>
               <a
-                href="tel:+919876543210"
+                href={getCallLink()}
                 className="flex items-center bg-gray-100 text-gray-700 px-4 py-2 rounded-full font-medium hover:bg-gray-200 transition-colors"
               >
                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -247,7 +270,7 @@ export default function DestinationDetailPage() {
                                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                                     </svg>
                                     <span className="text-sm text-gray-600">
-                                      <strong>Meals:</strong> {day.meals.length > 0 ? day.meals.join(', ') : 'Not included'}
+                                      <strong>Meals:</strong> {day.meals || 'Not included'}
                                     </span>
                                   </div>
                                   <div className="flex items-center">
@@ -336,7 +359,7 @@ export default function DestinationDetailPage() {
                 </button>
 
                 <a
-                  href={`https://wa.me/919876543210?text=Hi, I'm interested in ${destination.name} (${destination.duration}) tour package. Please share the details.`}
+                  href={getWhatsAppLink(`Hi, I'm interested in ${destination.name} (${destination.duration}) tour package. Please share the details.`)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full flex items-center justify-center bg-green-500 text-white py-4 rounded-xl font-semibold hover:bg-green-600 transition-colors mb-4"
@@ -348,13 +371,13 @@ export default function DestinationDetailPage() {
                 </a>
 
                 <a
-                  href="tel:+919876543210"
+                  href={getCallLink()}
                   className="w-full flex items-center justify-center border-2 border-gray-200 text-gray-700 py-4 rounded-xl font-semibold hover:border-teal-500 hover:text-teal-600 transition-colors"
                 >
                   <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  Call: +91 98765 43210
+                  Call: {companyConfig.contact.phoneDisplay}
                 </a>
 
                 {/* Quick Info */}

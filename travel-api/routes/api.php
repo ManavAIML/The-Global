@@ -28,7 +28,7 @@ Route::post('/inquiries', [InquiryController::class, 'store']);
 Route::post('/contact', [ContactController::class, 'store']);
 
 // Newsletter - Email subscriptions
-Route::post('/newsletter', [NewsletterController::class, 'store']);
+Route::post('/newsletter/subscribe', [NewsletterController::class, 'store']);
 
 // ===========================================
 // ADMIN ROUTES (Add authentication middleware for production)

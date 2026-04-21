@@ -53,9 +53,13 @@ export default function InquiryModal({ isOpen, onClose, destination = '', inquir
         email: formData.email,
         phone: formData.phone,
         destination: formData.destination,
-        inquiry_type: formData.inquiryType as 'tour' | 'visa' | 'general',
+        inquiry_type: formData.inquiryType as 'tour' | 'visa' | 'other',
         travel_date: formData.travelDate,
-        travelers: formData.travelers,
+        travelers: String(
+          formData.travelers === '10+' ? 10
+          : formData.travelers === '6-10' ? 6
+          : parseInt(formData.travelers, 10)
+        ),
         message: formData.message
       });
 

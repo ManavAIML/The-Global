@@ -26,7 +26,7 @@ class NewsletterController extends Controller
 
         // Search
         if ($request->has('search')) {
-            $query->where('email', 'ilike', "%{$request->search}%");
+            $query->where('email', 'like', "%{$request->search}%");
         }
 
         $subscribers = $query->orderBy('created_at', 'desc')->paginate(50);

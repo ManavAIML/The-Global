@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { getWhatsAppLink } from './config/company';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
@@ -27,7 +28,7 @@ function App() {
 
         {/* WhatsApp Floating Button */}
         <a
-          href="https://wa.me/919876543210"
+          href={getWhatsAppLink()}
           target="_blank"
           rel="noopener noreferrer"
           className="fixed bottom-6 right-6 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition-colors z-50"

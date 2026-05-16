@@ -17,10 +17,8 @@ export default function DestinationDetailPage() {
 
   const handleTabChange = (tab: 'overview' | 'itinerary' | 'inclusions' | 'hotels' | 'pricing' | 'map') => {
     setActiveTab(tab);
-    // Scroll the tab panel into view so the top is always visible
-    setTimeout(() => {
-      tabSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 0);
+    // Always scroll to top of page so the hero/header is visible, not the footer
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const destination = allDestinations.find((d) => d.id === id);

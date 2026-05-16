@@ -121,8 +121,9 @@ export default function DestinationDetailPage() {
       {/* Quick Info Bar */}
       <section className="bg-white border-b sticky top-20 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-center justify-between py-4 gap-4">
-            <div className="flex flex-wrap gap-6">
+          <div className="flex items-center justify-center sm:justify-between py-3 sm:py-4 gap-4">
+            {/* Info items — hidden on mobile, visible on sm+ */}
+            <div className="hidden sm:flex flex-wrap gap-6">
               <div className="flex items-center">
                 <svg className="w-5 h-5 text-teal-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -142,6 +143,7 @@ export default function DestinationDetailPage() {
                 <span className="text-gray-600">{destination.groupSize}</span>
               </div>
             </div>
+            {/* WhatsApp & Call — always visible */}
             <div className="flex gap-3">
               <a
                 href={getWhatsAppLink(`Hi, I'm interested in ${destination.name} tour package`)}

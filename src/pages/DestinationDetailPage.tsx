@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { domesticDestinations, Destination } from '../data/domesticDestinations';
 import { internationalDestinations } from '../data/internationalDestinations';
@@ -13,6 +13,15 @@ export default function DestinationDetailPage() {
   const [activeTab, setActiveTab] = useState<'overview' | 'itinerary' | 'inclusions' | 'hotels' | 'pricing' | 'map'>('overview');
   const [expandedDay, setExpandedDay] = useState<number | null>(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const tabSectionRef = useRef<HTMLDivElement>(null);
+
+  const handleTabChange = (tab: 'overview' | 'itinerary' | 'inclusions' | 'hotels' | 'pricing' | 'map') => {
+    setActiveTab(tab);
+    // Scroll the tab panel into view so the top is always visible
+    setTimeout(() => {
+      tabSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 0);
+  };
 
   const destination = allDestinations.find((d) => d.id === id);
 
@@ -166,7 +175,7 @@ export default function DestinationDetailPage() {
             {/* Left Content */}
             <div className="lg:col-span-2">
               {/* Tabs */}
-              <div className="bg-white rounded-xl shadow-lg overflow-hidden mb-8">
+              <div ref={tabSectionRef} className="bg-white rounded-xl shadow-lg overflow-hidden mb-8">
                 <div className="flex border-b overflow-x-auto whitespace-nowrap" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                   {[
                     { id: 'overview', label: 'Overview' },
@@ -178,7 +187,7 @@ export default function DestinationDetailPage() {
                   ].map((tab) => (
                     <button
                       key={tab.id}
-                      onClick={() => setActiveTab(tab.id as 'overview' | 'itinerary' | 'inclusions' | 'hotels' | 'pricing' | 'map')}
+                      onClick={() => handleTabChange(tab.id as 'overview' | 'itinerary' | 'inclusions' | 'hotels' | 'pricing' | 'map')}
                       className={`flex-shrink-0 px-6 py-4 text-center font-medium transition-colors ${
                         activeTab === tab.id
                           ? 'bg-teal-50 text-teal-600 border-b-2 border-teal-500'

@@ -4,7 +4,7 @@
 const CONFIG = {
     // Company Information
     company: {
-        name: "TravelEase",
+        name: "The Global Edge Consultant",
         tagline: "Your Journey Begins Here",
         description: "Your trusted travel partner for domestic and international tours. Creating memorable journeys since 2010.",
         foundedYear: 2010
@@ -14,9 +14,9 @@ const CONFIG = {
     contact: {
         phone: "+91 98765 43210",
         phoneLink: "919876543210", // For WhatsApp (no + or spaces)
-        email: "info@travelease.com",
+        email: "theglobaledgeconsultant@gmail.com",
         address: "123 Travel Street, Connaught Place, New Delhi, India - 110001",
-        workingHours: "Mon - Sat: 9:00 AM - 7:00 PM"
+        workingHours: "Mon - Sat: 10:00 AM - 7:00 PM"
     },
 
     // Social Media Links
@@ -48,7 +48,7 @@ const CONFIG = {
 
     // Email Configuration (for backend)
     email: {
-        adminEmail: "admin@travelease.com",
+        adminEmail: "vaikunth2213@gmail.com",
         notificationSubject: "New Inquiry from Website"
     }
 };

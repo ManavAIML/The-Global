@@ -7,7 +7,7 @@
 
 export const companyConfig = {
   // Basic Company Info
-  name: "TravelEase",
+  name: "The Global Edge Consultant",
   tagline: "Your Journey, Our Passion",
   description: "Premium travel experiences across India and around the world. We craft unforgettable journeys tailored to your dreams.",
 
